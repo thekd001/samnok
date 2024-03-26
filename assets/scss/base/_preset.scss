@@ -1,0 +1,21 @@
+.blind{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    margin: -1px;
+}
+.inner{
+    max-width: 1800px;
+    width: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+
+    @include pc-sl{
+        padding: 0 30px;
+    }
+    @include tablet-sl{
+        padding: 0 20px;
+    }
+}

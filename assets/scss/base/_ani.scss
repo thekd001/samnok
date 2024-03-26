@@ -1,0 +1,32 @@
+@keyframes arrow {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes down{
+    0%{
+        transform: translateY(-6px);
+    }
+    36%{
+        transform: translateY(6px);
+    }
+    75%{
+        transform: translateY(-6px);
+    }
+}

@@ -1,0 +1,37 @@
+$pc-lg:1600px;
+$pc-sl:1280px;
+$tablet-lg:1024px;
+$tablet-sl:768px;
+$mobile:480px;
+$mobile-320:320px;
+
+@mixin pc-lg(){
+    @media (max-width:$pc-lg) {
+        @content;
+    }
+}
+@mixin pc-sl(){
+    @media (max-width:$pc-sl) {
+        @content;
+    }
+}
+@mixin tablet-lg(){
+    @media (max-width:$tablet-lg) {
+        @content;
+    }
+}
+@mixin tablet-sl(){
+    @media (max-width:$tablet-sl) {
+        @content;
+    }
+}
+@mixin mobile(){
+    @media (max-width:$mobile) {
+        @content;
+    }
+}
+@mixin mobile-320(){
+    @media (max-width:$mobile-320) {
+        @content;
+    }
+}

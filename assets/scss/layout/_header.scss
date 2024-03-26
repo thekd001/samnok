@@ -1,0 +1,127 @@
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.8s;
+    &.hide{
+        transform: translateY(-100%);
+    }
+    &.active{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    &::before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: #000;
+        transition: .3s;
+        content: '';
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        top: 88px;
+        width: 100%;
+        height: 1px;
+        background-color: #303030;
+        z-index: 3;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+    }
+    &.on{
+        border-bottom: 1px solid #303030;
+        &:before{
+            height: 400px;
+        }
+        &::after{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    .inner{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 88px;
+        position: relative;
+        z-index: 10;
+
+        @include pc-sl{
+            height: 50px;
+        }
+        .hd_logo{
+            img{
+                @include pc-sl{
+                    width: 120px;
+                }
+            }
+        }
+        .m_btn{
+            width: 38px;
+            height: 20px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            display: none;
+
+            @include pc-sl{
+                display: block;
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 2px;
+                border-radius: 2px;
+                background: #fff;
+                transition: all 0.3s;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 2px;
+                border-radius: 2px;
+                background: #fff;
+                transition: all 0.3s;
+            }
+            &.on{
+                &::before{
+                    top: 12px;
+                    transform: rotate(45deg);
+                }
+                &::after{
+                    bottom: 6px;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+.m_bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 8;
+    transition: opacity 0.3s, visibility 0.3s;
+    &.show{
+        opacity: 1;
+        visibility: visible;
+    }
+}
