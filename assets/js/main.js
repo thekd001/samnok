@@ -135,11 +135,18 @@ $('.box-in .btn-more, .stroke-in .btn-more').hover(function(){
 function businessEffect(){
     ScrollTrigger.matchMedia({        
         "(min-width: 768px)": function(){
-            let imgWidth_ = $('.sc-business').find('.img-wrap').width();
-            let textWidth = $('.sc-business').find(".text-last").width();					
-            let wdWidth = $(window).outerWidth();
-            let setWidth = textWidth + wdWidth;
-            let moveWidth = imgWidth_ + setWidth;
+            gsap.set('.sc-business .other .common-wrap',{
+                yPercent:-50,
+                x:function(){
+                    return window.outerWidth
+                }
+            });
+            gsap.set('.sc-business .other .text-area',{
+                xPercent:-100,
+                x:function(){
+                    return -window.outerWidth
+                }
+            });
             
             business = gsap.timeline({
                 scrollTrigger:{
@@ -150,14 +157,16 @@ function businessEffect(){
                     invalidateOnRefresh: true,
                 },
             })
-            gsap.set('.sc-business .other .common-wrap',{
+            business.set('.sc-business .other .common-wrap',{
+                yPercent:-50,
                 x:function(){
-                    return window.innerWidth
+                    return window.outerWidth
                 }
             });
-            gsap.set('.sc-business .other .text-area',{
+            business.set('.sc-business .other .text-area',{
+                xPercent:-100,
                 x:function(){
-                    return -setWidth
+                    return -window.outerWidth
                 }
             });
             business.to('.sc-business .content.first .img-wrap',{width:'46%'},'a')
@@ -166,52 +175,24 @@ function businessEffect(){
             business.to('.sc-business .content.first .stroke-in',{left:"100%"}, 'a');
             business.to('.sc-business .content.first .img-wrap',{
                 x:function(){
-                    return -window.innerWidth;
+                    return -window.outerWidth;
             }},'b');
-            business.set('.sc-business .content:nth-child(2)',{'z-index':2},'b+=0.2');
-            business.to('.sc-business .content:nth-child(2) .common-wrap',{
-                x:function(){
-                    return -window.innerWidth
-                }
-            },'b+=0.2');
-            business.to('.sc-business .content:nth-child(2) .text-area',{
-                x:function(){
-                    return moveWidth
-                }
-            },'b+=0.2');
-            business.set('.sc-business .content:nth-child(3)',{'z-index':3},'c-=0.2');
-            business.to('.sc-business .content:nth-child(3) .common-wrap',{
-                x:function(){
-                    return -window.innerWidth
-                }
-            },'c-=0.2');
-            business.to('.sc-business .content:nth-child(3) .text-area',{
-                x:function(){
-                    return moveWidth
-                }
-            },'c-=0.2');
-            business.set('.sc-business .content:nth-child(4)',{'z-index':4},'d-=0.2');
-            business.to('.sc-business .content:nth-child(4) .common-wrap',{
-                x:function(){
-                    return -window.innerWidth
-                }
-            },'d-=0.2');
-            business.to('.sc-business .content:nth-child(4) .text-area',{
-                x:function(){
-                    return moveWidth
-                }
-            },'d-=0.2');
-            business.set('.sc-business .content:nth-child(5)',{'z-index':5},'e-=0.2');
-            business.to('.sc-business .content:nth-child(5) .common-wrap',{
-                x:function(){
-                    return -window.innerWidth
-                }
-            },'e-=0.2');
-            business.to('.sc-business .content:nth-child(5) .text-area',{
-                x:function(){
-                    return moveWidth
-                }
-            },'e-=0.2');
+            
+            for (let i = 0; i < 4; i++) {
+                business.set('.sc-business .content:nth-child('+(2+i)+')',{'z-index':2+i},'b'+i);
+                business.to('.sc-business .content:nth-child('+(2+i)+') .common-wrap',{
+                    xPercent:-100,
+                    x:function(){
+                        return 0;
+                    }
+                },'b'+i);
+                business.to('.sc-business .content:nth-child('+(2+i)+') .text-area',{
+                    xPercent:0,
+                    x:function(){
+                        return $('.sc-business .other .common-wrap').outerWidth()+window.outerWidth;
+                    }
+                },'b'+i);
+            }
         },
         "(max-width: 767px)": function () {
             busiTitle = gsap.timeline({
@@ -243,9 +224,8 @@ visEffect();
 companyEffect();
 businessEffect();
 
-$(window).resize(function(){
-    document.location.reload();
-});
+
+
 // cursor
 $(window).mousemove(function(e){
     x = e.clientX;

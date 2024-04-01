@@ -737,7 +737,6 @@
                         .img-wrap{
                             position: absolute;
                             top: 50%;
-                            transform: translate(0, -50%);
                             z-index: 1;
                             .img-inner{
                                 position: relative;
@@ -770,9 +769,16 @@
                             }
                         }
                         .text-wrap{
-                            position: absolute;
+                            position: absolute;                            
                             top: 50%;
                             width: 52.9688vw;
+                            padding-top: 53%;
+                            @include pc-sl{
+                                width: 70vw;
+                            }
+                            @include tablet-lg{
+                                width: 80vw;
+                            }
                         }
                         .other-out{
                             position: absolute;

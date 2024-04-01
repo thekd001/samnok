@@ -1555,8 +1555,6 @@ body {
 .container .sc-business .sticky-wrap .content.other a .img-wrap {
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
   z-index: 1;
 }
 .container .sc-business .sticky-wrap .content.other a .img-wrap .img-inner {
@@ -1596,6 +1594,17 @@ body {
   position: absolute;
   top: 50%;
   width: 52.9688vw;
+  padding-top: 53%;
+}
+@media (max-width: 1280px) {
+  .container .sc-business .sticky-wrap .content.other a .text-wrap {
+    width: 70vw;
+  }
+}
+@media (max-width: 1024px) {
+  .container .sc-business .sticky-wrap .content.other a .text-wrap {
+    width: 80vw;
+  }
 }
 .container .sc-business .sticky-wrap .content.other a .other-out {
   position: absolute;
